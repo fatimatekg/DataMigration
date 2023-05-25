@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '97684563-5ef9-406a-91f7-5dc00de54055', url: 'https://github.com/fatimatekg/DataMigration.git']])
+            }
+        }
+        stage('Build') {
+            steps {
+                git credentialsId: '97684563-5ef9-406a-91f7-5dc00de54055', url: 'https://github.com/fatimatekg/DataMigration.git'
+                bat 'python Final Codes python.py'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'the job has been tested'
+            }
+        }
+    }
+}
