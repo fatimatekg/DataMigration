@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                git credentialsId: '97684563-5ef9-406a-91f7-5dc00de54055', url: 'https://github.com/fatimatekg/DataMigration.git'
+                git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
                 bat 'python Final Codes python.py'
             }
         }
