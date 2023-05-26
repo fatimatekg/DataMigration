@@ -25,7 +25,7 @@ stage('Run Script') {
             git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
 
             // Run the Python script
-            bat 'env\\Scripts\\activate && python "Final Codes/python.py"'
+            bat 'env\\Scripts\\activate && python "Final Codes python.py"'
         }
     }
 }
