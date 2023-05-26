@@ -10,10 +10,11 @@ pipeline {
     steps {
         script {
             // Create a virtual environment
-            bat 'python -m venv env'
+            
+            bat 'C:\Users\ADMIN\AppData\Local\Programs\Python\Python311\python.exe -m venv env'
 
             // Activate the virtual environment and install dependencies
-            bat 'call env\\Scripts\\activate.bat && pip install -r requirements.txt'
+            bat 'call env\\Scripts\\activate.bat && pip install -r C:\requirement.txt'
         }
     }
 }
@@ -25,7 +26,7 @@ stage('Run Script') {
             git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
 
             // Run the Python script
-            bat 'env\\Scripts\\activate && python "Final Codes python.py"'
+            bat 'env\\Scripts\\activate && python "C:\ProgramData\Jenkins\.jenkins\workspace\Data Migration\Final Codes python.py"'
         }
     }
 }
