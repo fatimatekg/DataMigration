@@ -18,12 +18,7 @@ pipeline {
                 sh 'python Final Codes python.py'
             }
         }
-        post {
-        always {
-            // Deactivate the virtual environment
-            sh 'env/Scripts/deactivate.bat'
-        }
-    }
+      
         stage('Test') {
             steps {
                 echo 'the job has been tested'
