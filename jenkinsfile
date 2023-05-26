@@ -16,7 +16,7 @@ pipeline {
         stage('Run Script') {
             steps {
             git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
-             python Final Codes python.py
+            sh 'python Final Codes python.py'
             }
         }
       
