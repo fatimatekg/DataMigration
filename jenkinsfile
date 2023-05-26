@@ -8,19 +8,27 @@ pipeline {
         }
         stage('Build') {
     steps {
-        sh 'python -m venv env'
-        sh 'env\\Scripts\\activate'
-        sh 'pip install -r requirements.txt'
+        script {
+            // Create a virtual environment
+            bat 'python -m venv env'
+
+            // Activate the virtual environment and install dependencies
+            bat 'env\\Scripts\\activate && pip install -r requirements.txt'
+        }
     }
 }
 
 stage('Run Script') {
     steps {
-        git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
-        sh 'python "Final Codes python.py"'
+        script {
+            // Check out the specified Git repository and branch
+            git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
+
+            // Run the Python script
+            bat 'env\\Scripts\\activate && python "Final Codes/python.py"'
+        }
     }
 }
-      
         stage('Test') {
             steps {
                 echo 'the job has been tested'
