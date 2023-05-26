@@ -8,13 +8,22 @@ pipeline {
         }
         stage('Build') {
             steps {
-                //sh 'python -m venv env'
-                //sh '. env/bin/activate'
-                //sh 'pip install -r requirements.txt'
-                git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
+                sh 'python -m venv env'
+                sh '. env/bin/activate.bat'
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Script') {
+            steps {
                 sh 'python Final Codes python.py'
             }
         }
+        post {
+        always {
+            // Deactivate the virtual environment
+            sh 'env/Scripts/deactivate.bat'
+        }
+    }
         stage('Test') {
             steps {
                 echo 'the job has been tested'
