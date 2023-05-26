@@ -1,14 +1,14 @@
 pipeline {
     agent any
-tools {
-        python 'Python 3.10.9'
-    }
     stages {
         stage('Checkout') {
             steps {
                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '97684563-5ef9-406a-91f7-5dc00de54055', url: 'https://github.com/fatimatekg/DataMigration.git']])
             }
         }
+        tools {
+        python 'Python 3.10.9'
+    }
         stage('Build') {
             steps {
                 sh 'python -m venv env'
