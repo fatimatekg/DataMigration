@@ -8,9 +8,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'python -m venv env'
-                sh '. env/bin/activate'
-                sh 'pip install -r requirements.txt'
+                bat 'python -m venv env'
+                bat '. env/bin/activate'
+                bat 'pip install -r requirements.txt'
                 git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
                 bat 'python Final Codes python.py'
             }
