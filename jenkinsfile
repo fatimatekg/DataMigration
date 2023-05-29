@@ -11,7 +11,7 @@ pipeline {
         script {
             // Create a virtual environment
             
-            bat 'C:\Users\ADMIN\AppData\Local\Programs\Python\Python311\python.exe -m venv env'
+            bat 'python -m venv env'
 
             // Activate the virtual environment and install dependencies
             bat 'call env\\Scripts\\activate.bat && pip install -r requirement.txt'
