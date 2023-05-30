@@ -1,10 +1,39 @@
 pipeline {
-  agent any
-  stages {
-    stage('Run Python Script') {
-      steps {
-        sh 'python C:\\projects\\Finalcodespython.py'
-      }
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '97684563-5ef9-406a-91f7-5dc00de54055', url: 'https://github.com/fatimatekg/DataMigration.git']])
+            }
+        }
+       stage('Build') {
+    steps {
+        script {
+            // Create a virtual environment
+            
+            sh 'python.exe -m venv env'
+
+            // Activate the virtual environment and install dependencies
+            bat 'call env\\Scripts\\activate.bat && pip install -r requirement.txt'
+        }
     }
-  }
+}
+
+stage('Run Script') {
+    steps {
+        script {
+            // Check out the specified Git repository and branch
+            git branch: 'main', url: 'https://github.com/fatimatekg/DataMigration.git'
+
+            // Run the Python script
+            bat 'env\\Scripts\\activate && python "Final Codes python.py"'
+        }
+    }
+}
+        stage('Test') {
+            steps {
+                echo 'the job has been tested'
+            }
+        }
+    }
 }
