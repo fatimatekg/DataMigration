@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Run Python Script') {
       steps {
-        sh 'python C:\projects\Finalcodespython.py'
+        sh 'python C:\projects\Final Codes Python.py'
       }
     }
   }
